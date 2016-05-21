@@ -1,0 +1,20 @@
+﻿#cookie-law { 
+    background: #565656;
+    margin:0px auto 0; 
+}
+ 
+#cookie-law p { 
+    padding:10px; 
+    font-size:1.0em;  
+    text-align:center; 
+    color:#ffffff; 
+    margin:0;
+}
+
+#cookie-law a { 
+    padding:10px; 
+    font-size:1.0em; 
+    text-align:center; 
+    color:#ffffff; 
+    margin:0;
+}

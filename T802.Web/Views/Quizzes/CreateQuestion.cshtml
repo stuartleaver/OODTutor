@@ -1,0 +1,50 @@
+﻿@model T802.Web.Models.Quiz.QuizQuestionModel
+@{
+    ViewBag.Title = "Create a Question";
+}
+
+<h2>Create Question</h2>
+
+@using (Html.BeginForm("CreateQuestion", "Quizzes", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.ValidationSummary(false, "Errors:", new { @class = "alert alert-error" })
+    @Html.HiddenFor(x => Model.QuizId)
+
+    <div class="form-group">
+        @Html.Label("Question", new { @class = "control-label col-xs-2" })
+        <div class="col-xs-10">
+            @Html.TextAreaFor(x => x.Question, new { @class = "form-control", placeholder = "Enter Question" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Points", new { @class = "control-label col-xs-2" })
+        <div class="col-xs-10">
+            @Html.TextAreaFor(x => x.Points, new { @class = "form-control" })
+            <span class="help-block">Number of points you think the question is worth based on difficulty.</span>
+        </div>
+    </div>
+
+    <h3>Answers <small>Use the radio button to set the correct answer</small></h3>
+    for (var i = 1; i <= Model.Answers.Count; i++)
+    {
+        <div class="form-group">
+            @Html.Label("Option", new { @class = "control-label col-xs-2" })
+            <div class="col-xs-10">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        @Html.RadioButtonFor(x => Model.SelectedAnswer, i - 1)
+                    </span>
+                    @Html.TextBoxFor(x => Model.Answers[i - 1].Text, Model.Answers[i - 1].Text, new { @class = "form-control", placeholder = "Option " + i })
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="form-group">
+        <span class="col-xs-2"></span>
+        <div class="col-xs-offset col-xs-10">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+}
+

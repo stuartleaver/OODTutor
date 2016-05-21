@@ -1,0 +1,150 @@
+﻿@using T802.Core.Domain.Quizzes
+@using T802.Core.Domain.Students
+@model T802.Web.Models.Game.GameHomeModel
+@{
+    ViewBag.Title = "Game";
+}
+<style type="text/css">
+    .fixed-panel {
+        min-height: 140px;
+        max-height: 140px;
+    }
+</style>
+
+<h2>Game Home</h2>
+
+@if (Model.TakenFinalQuiz)
+{
+    <div class="alert alert-info">
+        <p>
+            Thank you for playing and completing the game. As mentioned before, your feedback on the game is just as important as the data gathered here, so please take a few more minutes to answer the final survey. Please note that you will be asked for the following information so that your answers can be matched to your game. As always, your answers are as anonymous as you have made your username.
+            <ul>
+                <li>Username: <b>@User.Identity.Name</b></li>
+                <li>Teaching method: <b>Game</b></li>
+            </ul>
+        </p>
+    </div>
+}
+
+<div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-heading panel-heading-info">Initial Quiz</div>
+            <div class="panel-body fixed-panel">
+                @if (!Model.TakenInitialQuiz)
+                {
+                    @Html.ActionLink("Initial quiz", "Quiz", new { id = "InitialQuiz" })
+                    <p>This is the first quiz that will be used to benchmark your knowledge of SOLID and to be compared with the final quiz.</p>
+                }
+                else
+                {
+                    <span>Initial Quiz (Completed)</span>
+                }
+            </div>
+        </div>
+    </div>
+    @if (Model.TakenInitialQuiz)
+    {
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Single responsibility principle</div>
+                <div class="panel-body fixed-panel">
+                    @Html.ActionLink("Course Material", "SingleResponsibilityPrinciple", "Course") (@Html.ActionLink("PDF", "PDF", "Course", new { id = "SingleResponsibilityPrinciple" }, new { @target = "_blank" }))
+                    @Html.Partial("_SRPQuizzes")
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Open/closed principle</div>
+                <div class="panel-body fixed-panel">
+                    @Html.ActionLink("Course Material", "OpenClosedPrinciple", "Course") (@Html.ActionLink("PDF", "PDF", "Course", new { id = "OpenClosedPrinciple" }, new { @target = "_blank" }))
+                    @Html.Partial("_OCPQuizzes")
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Liskov substitution principle</div>
+                <div class="panel-body fixed-panel">
+                    @Html.ActionLink("Course Material", "LiskovSubstitutionPrinciple", "Course") (@Html.ActionLink("PDF", "PDF", "Course", new { id = "LiskovSubstitutionPrinciple" }, new { @target = "_blank" }))
+                    @Html.Partial("_LSPQuizzes")
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Interface segregation principle</div>
+                <div class="panel-body fixed-panel">
+                    @Html.ActionLink("Course Material", "InterfaceSegregationPrinciple", "Course") (@Html.ActionLink("PDF", "PDF", "Course", new { id = "InterfaceSegregationPrinciple" }, new { @target = "_blank" }))
+                    @Html.Partial("_ISPQuizzes")
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Dependency inversion principle</div>
+                <div class="panel-body fixed-panel">
+                    @Html.ActionLink("Course Material", "DependencyInversionPrinciple", "Course") (@Html.ActionLink("PDF", "PDF", "Course", new { id = "DependencyInversionPrinciple" }, new { @target = "_blank" }))
+                    @Html.Partial("_DSPQuizzes")
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Sample Code</div>
+                <div class="panel-body fixed-panel">
+                    <ul class="list-unstyled">
+                        <li>@Html.ActionLink("Starter project (Bad code)", "File", "Download", new { id = "Start" }, null)</li>
+                        <li>@Html.ActionLink("Single Responsibility", "File", "Download", new { id = "SRP" }, null) (@Html.ActionLink("Video", "Video", "Course", new { id = "SingleResponsibilityPrinciple" }, new { @target = "_blank" }))</li>
+                        <li>@Html.ActionLink("Open-Closed", "File", "Download", new { id = "OCP" }, null) (@Html.ActionLink("Video", "Video", "Course", new { id = "OpenClosedPrinciple" }, new { @target = "_blank" }))</li>
+                        <li>@Html.ActionLink("Liskov Substitution", "File", "Download", new { id = "LSP" }, null) (@Html.ActionLink("Video", "Video", "Course", new { id = "LiskovSubstitutionPrinciple" }, new { @target = "_blank" }))</li>
+                        <li>@Html.ActionLink("Interface Segregation", "File", "Download", new { id = "ISP" }, null) (@Html.ActionLink("Video", "Video", "Course", new { id = "InterfaceSegregationPrinciple" }, new { @target = "_blank" }))</li>
+                        <li>@Html.ActionLink("Dependency Inversion", "File", "Download", new { id = "DIP" }, null) (@Html.ActionLink("Video", "Video", "Course", new { id = "DependencyInversionPrinciple" }, new { @target = "_blank" }))</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading panel-heading-info">Final Quiz</div>
+                <div class="panel-body fixed-panel">
+                    @if (!Model.TakenFinalQuiz)
+                    {
+                        @Html.ActionLink("Final quiz", "Quiz", new { id = "FinalQuiz" })
+                        <p>The results of this quiz will be compared to your results from the first quiz to see what level of improvement there has been.</p>
+                    }
+                    else
+                    {
+                        <span>Final Quiz (@Html.ActionLink("Result", "Result", "Quizzes", new { id = SystemQuizNames.FinalQuiz, student = User.Identity.Name }, null))</span>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Explore</div>
+                <div class="panel-body fixed-panel">
+                    Take the @Html.ActionLink("Initial quiz", "Quiz", new { id = "InitialQuiz" }) to discover more content.
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="col-sm-12 col-md-8 col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading panel-heading-info">Final Survey</div>
+            <div class="panel-body fixed-panel">
+                @Html.ActionLink("Survey - Please take part in this final survey as your personal experiances not collected here are a key factor to this research.", "Survey", "Student")
+                <p>You will need the following:</p>
+                <ul>
+                    <li>Username: <b>@User.Identity.Name</b></li>
+                    <li>Teaching method: <b>Game</b></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

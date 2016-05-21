@@ -1,0 +1,41 @@
+﻿@model T802.Web.Models.Student.LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Student", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+
+    <div class="message-error">
+        @Html.ValidationSummary(false)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username, new { @class = "control-label col-xs-2" })
+        <div class="col-xs-10">
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Username", autofocus = "autofocus" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "control-label col-xs-2" })
+        <div class="col-xs-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+            @Html.ActionLink("Forgotton Password?", "PasswordRecovery", "Student")
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+            <div class="checkbox">
+                <label>@Html.CheckBoxFor(m => m.RememberMe) Remember me</label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+            <input class="btn btn-primary" type="submit" value="Login" />
+        </div>
+    </div>
+
+}

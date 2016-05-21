@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{76FAE19A-9A86-43E7-A58C-6E8CCF761390}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>T802.Services</RootNamespace>
+    <AssemblyName>T802.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Achievements\AchievementService.cs" />
+    <Compile Include="Achievements\IAchievementService.cs" />
+    <Compile Include="Authentication\FormsAuthenticationService.cs" />
+    <Compile Include="Authentication\IAuthenticationService.cs" />
+    <Compile Include="Authentication\Security\StudentPrincipal.cs" />
+    <Compile Include="Authentication\Security\StudentPrincipleSerializeModel.cs" />
+    <Compile Include="Installation\IInstallationService.cs" />
+    <Compile Include="Installation\InstallationService.cs" />
+    <Compile Include="Leaderboards\ILeaderboardService.cs" />
+    <Compile Include="Leaderboards\LeaderboardService.cs" />
+    <Compile Include="Logging\StudentActivityService.cs" />
+    <Compile Include="Logging\IStudentActivityService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quizzes\IQuizResultService.cs" />
+    <Compile Include="Quizzes\IQuizService.cs" />
+    <Compile Include="Quizzes\QuizResultService.cs" />
+    <Compile Include="Quizzes\QuizService.cs" />
+    <Compile Include="Quizzes\QuizCreationResult.cs" />
+    <Compile Include="Security\EncryptionService.cs" />
+    <Compile Include="Security\IEncryptionService.cs" />
+    <Compile Include="Students\ChangePasswordRequest.cs" />
+    <Compile Include="Students\StudentRegistrationResult.cs" />
+    <Compile Include="Students\IStudentRegistrationService.cs" />
+    <Compile Include="Students\IStudentService.cs" />
+    <Compile Include="Students\PasswordChangeResult.cs" />
+    <Compile Include="Students\StudentExtensions.cs" />
+    <Compile Include="Students\StudentRegistrationRequest.cs" />
+    <Compile Include="Students\StudentRegistrationService.cs" />
+    <Compile Include="Students\StudentService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\T802.Core\T802.Core.csproj">
+      <Project>{fc5c8f15-7dac-4b82-8cd2-19c9c7eb024c}</Project>
+      <Name>T802.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\T802.Data\T802.Data.csproj">
+      <Project>{dfef0f64-f5d8-4bb0-8e5a-d47c2567e658}</Project>
+      <Name>T802.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\T802.ServiceBusMessaging\T802.ServiceBusMessaging.csproj">
+      <Project>{004bee07-1e3d-42ef-bf4b-653c9de8e546}</Project>
+      <Name>T802.ServiceBusMessaging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

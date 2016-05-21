@@ -1,0 +1,38 @@
+﻿@using T802.Core.Domain.Students
+@model T802.Web.Models.Student.RegisterResultModel
+@{
+    ViewBag.Title = "RegisterResult";
+
+    //continue URL
+    var qs = this.Context.Request.QueryString["returnUrl"];
+    var continueUrl = "";
+    if (!String.IsNullOrEmpty(qs) && Url.IsLocalUrl(qs))
+    {
+        continueUrl = qs;
+    }
+    else
+    {
+        continueUrl = Url.Action("Index", "Home");
+    }
+}
+
+<h2>Register Result</h2>
+
+<div class="result">
+    @if (User.IsInRole(SystemStudentRoleNames.Game))
+    {
+        <p>Congratulations, you have been selected to take part in the gamification method of learning. The aim of this method is to see if gamification concepts help andare beneficial in education and the concepts you will see have been choosen based on the feedback from the initial survey.</p>
+        <p>You want see much on the next screen until you take the initial quiz. This is so that a benchmark can be taken on your knowledge of SOLID design principles. Once you have completed that, you will unlock the rest of the site containing formal teaching material and quizzes for each design principle.</p>
+        <p>The design principle quizzes give you the chance to score points to try and top the leaderboard, so do you aim to just pass each one, or make sure you know enough by researching the questions first to try and get a higher score than your peers? The choice is yours. All the way through this process you will be earning achievements so can you gain the bragging rights by claiming them all?</p>
+        <p>Along your way, you can also create quizzes from what you have learnt for your peers to take so that knowledge can be shared and so others can learn from your experiences. Also, all along the way you will be earning achievements so can you collect them all to gain the platinium trophy.</p>
+    }
+    else if (User.IsInRole(SystemStudentRoleNames.Traditional))
+    {
+        <p>Congratulations, you have been selected to take part in the traditional method of learning. While you may be thinking "damn, I wanted to play the gamification version", you have a very important role to play. While your peers may have gamification concepts to help them, your aim is to see if the more formal "classroom" method is just as effective as gamification.</p>
+        <p>You want see much on the next screen until you take the initial quiz. This is so that a benchmark can be taken on your knowledge of SOLID design principles. Once you have completed that, you will unlock the rest of the site containing formal teaching material.</p>
+    }
+    <p>The final quiz is to see how much your knowledge has improved. The result from this will be compared against your result in the first quiz along with along with the results from the participants taking part in the traditional method to see if there are any trends.</p>
+    <p>I would then ask you to fill in the final survey. While data collected through this site is important to the research, your feedback that can't be gievn through this site is just as important. You will need to enter your username so that results can be correlated to see if there is any trends between your results here and your feedback. However, as you saw when you registered, everything will be kept in confidence, individual results will not be reported and your username is as anonymous as you have kept it.</p>
+</div>
+
+<input type="button" class="btn btn-primary" onclick="location.href='@continueUrl' "value="Continue" />

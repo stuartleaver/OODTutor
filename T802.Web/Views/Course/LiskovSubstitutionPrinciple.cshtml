@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Liskov Substitution Principle";
+}
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<h2>Liskov Substitution Principle</h2>
+
+<div class="row">
+    <div class="col-xs-3" id="myScrollspy">
+        <ul class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="125">
+            <li class="active"><a href="#section-0">Definition</a></li>
+            <li><a href="#section-1">Motivation</a></li>
+            <li><a href="#section-2">Intent</a></li>
+            <li><a href="#section-3">Example</a></li>
+            <li><a href="#section-4">Conclusion</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-9">
+        <h2 id="section-0">Definition</h2>
+        <p>
+            Substitutability is a principle in object-oriented programming. It states that, in a computer program, if S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e., objects of type S may substitute objects of type T) without altering any of the desirable properties of that program (correctness, task performed, etc.). More formally, the Liskov substitution principle (LSP) is a particular definition of a subtyping relation, called (strong) behavioral subtyping, that was initially introduced by Barbara Liskov in a 1987 conference keynote address entitled Data abstraction and hierarchy. It is a semantic rather than merely syntactic relation because it intends to guarantee semantic interoperability of types in a hierarchy, object types in particular. Barbara Liskov and Jeannette Wing formulated the principle succinctly in a 1994 paper as follows:
+        </p>
+        <p>
+            Let Φ(x) be a property provable about objects x of type T. Then Φ(y) should be true for objects y of type S where S is a subtype of T.
+        </p>
+        <p>
+            In the same paper, Liskov and Wing detailed their notion of behavioral subtyping in an extension of Hoare logic, which bears a certain resemblance with Bertrand Meyer's Design by Contract in that it considers the interaction of subtyping with preconditions, postconditions and invariants.
+        </p>
+        @Html.CreditLink("https://en.wikipedia.org/wiki/Liskov_substitution_principle", "Wikipedia - Liskov substitution principle")
+        <br/><br/>
+        @Html.Blockquote("Liskov substitution principle.", "http://www.oodesign.com/liskov-s-substitution-principle.html")
+        <hr>
+        <h2 id="section-1">Motivation</h2>
+        <p>All the time we design a program module and we create some class hierarchies. Then we extend some classes creating some derived classes.</p>
+        <p>We must make sure that the new derived classes just extend without replacing the functionality of old classes. Otherwise the new classes can produce undesired effects when they are used in existing program modules.</p>
+        <p>Likov's Substitution Principle states that if a program module is using a Base class, then the reference to the Base class can be replaced with a Derived class without affecting the functionality of the program module.</p>
+        <hr>
+        <h2 id="section-2">Intent</h2>
+        <p>Derived types must be completely substitutable for their base types.</p>
+        <hr>
+        <h2 id="section-3">Example</h2>
+        <p>Below is the classic example for which the Likov's Substitution Principle is violated. In the example 2 classes are used: Rectangle and Square. Let's assume that the Rectangle object is used somewhere in the application. We extend the application and add the Square class. The square class is returned by a factory pattern, based on some conditions and we don't know the exact what type of object will be returned. But we know it's a Rectangle. We get the rectangle object, set the width to 5 and height to 10 and get the area. For a rectangle with width 5 and height 10 the area should be 50. Instead the result will be 100</p>
+        <pre class=prettyprint>
+class Rectangle
+{
+	protected int m_width;
+	protected int m_height;
+	public void setWidth(int width){
+		m_width = width;
+	}
+	public void setHeight(int height){
+		m_height = height;
+	}
+	public int getWidth(){
+		return m_width;
+	}
+	public int getHeight(){
+		return m_height;
+	}
+	public int getArea(){
+		return m_width * m_height;
+	}	
+}
+class Square extends Rectangle 
+{
+	public void setWidth(int width){
+		m_width = width;
+		m_height = width;
+	}
+	public void setHeight(int height){
+		m_width = height;
+		m_height = height;
+	}
+}
+class LspTest
+{
+	private static Rectangle getNewRectangle()
+	{
+		// it can be an object returned by some factory ... 
+		return new Square();
+	}
+	public static void main (String args[])
+	{
+		Rectangle r = LspTest.getNewRectangle();
+        
+		r.setWidth(5);
+		r.setHeight(10);
+		// user knows that r it's a rectangle. 
+		// It assumes that he's able to set the width and height as for the base class
+		System.out.println(r.getArea());
+		// now he's surprised to see that the area is 100 instead of 50.
+	}
+}
+        </pre>
+        <hr>
+        <h2 id="section-4">Conclusion</h2>
+        <p>This principle is just an extension of the Open Close Principle and it means that we must make sure that new derived classes are extending the base classes without changing their behavior.</p>
+    </div>
+    @Html.CreditLink("http://www.oodesign.com/liskov-s-substitution-principle.html", "OODesign.com - Liskov substitution principle")
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+

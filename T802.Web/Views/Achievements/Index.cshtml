@@ -1,0 +1,47 @@
+﻿@using T802.Core.Domain.Students
+@model List<T802.Web.Models.Achievement.AchievementModel>
+@{
+    ViewBag.Title = "Achievements";
+}
+
+<h2>Achievement List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var achievement in Model)
+        {
+            <tr>
+                <td>
+                    @if (achievement.HasAchievement)
+                    {
+                        switch (achievement.Level)
+                        {
+                            case "Bronze":
+                                @Html.Image(Url.Content("~/Content/Images/Trophies/Bronze.png"), "Bronze", "auto")
+                                break;
+                            case "Silver":
+                                @Html.Image(Url.Content("~/Content/Images/Trophies/Silver.png"), "Silver", "auto")
+                                break;
+                            case "Gold":
+                                @Html.Image(Url.Content("~/Content/Images/Trophies/Gold.png"), "Gold", "auto")
+                                break;
+                            case "Platinum":
+                                @Html.Image(Url.Content("~/Content/Images/Trophies/Platinum.png"), "Platinum", "auto")
+                                break;
+                        }
+                    }
+                </td>
+                <td>@Html.Label(achievement.Name)</td>
+                <td>@Html.Label(achievement.Description)</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

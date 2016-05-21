@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DFEF0F64-F5D8-4BB0-8E5A-D47C2567E658}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>T802.Data</RootNamespace>
+    <AssemblyName>T802.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="EfRepository.cs" />
+    <Compile Include="IDbContext.cs" />
+    <Compile Include="Initializers\T802Initializer.cs" />
+    <Compile Include="Mapping\Logging\ActivityLogMap.cs" />
+    <Compile Include="Mapping\Logging\ActivityLogTypeMap.cs" />
+    <Compile Include="Mapping\Logging\LogMap.cs" />
+    <Compile Include="Mapping\Quizzes\QuizCommentMap.cs" />
+    <Compile Include="Mapping\Quizzes\QuizResultMap.cs" />
+    <Compile Include="Mapping\Quizzes\QuizMap.cs" />
+    <Compile Include="Mapping\Quizzes\QuizQuestionMap.cs" />
+    <Compile Include="Mapping\Quizzes\QuizAnswerMap.cs" />
+    <Compile Include="Mapping\Quizzes\QuizUserAnswerMap.cs" />
+    <Compile Include="Mapping\Students\AchievementHistoryMap.cs" />
+    <Compile Include="Mapping\Students\AchievementLevelMap.cs" />
+    <Compile Include="Mapping\Students\AchievementMap.cs" />
+    <Compile Include="Mapping\Students\LevelPointsHistoryMap.cs" />
+    <Compile Include="Mapping\Students\RewardPointsHistoryMap.cs" />
+    <Compile Include="Mapping\Students\StudentMap.cs" />
+    <Compile Include="Mapping\Students\StudentRoleMap.cs" />
+    <Compile Include="Mapping\T802EntityTypeConfiguration.cs" />
+    <Compile Include="T802Context.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\T802.Core\T802.Core.csproj">
+      <Project>{fc5c8f15-7dac-4b82-8cd2-19c9c7eb024c}</Project>
+      <Name>T802.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
