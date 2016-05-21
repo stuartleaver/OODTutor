@@ -1,0 +1,22 @@
+﻿@using T802.Web.Models.Quiz
+@model T802.Web.Models.Quiz.QuizCommentListModel
+
+@{
+    ViewBag.Title = "Comment";
+}
+
+<h2>Comments</h2>
+
+@Html.Partial("_createComment", new QuizCommentModel
+{
+    QuizId = Model.QuizId
+})
+
+@if (Model.Comments.Count > 0)
+{
+    @Html.Grid(Model.Comments).Columns(columns =>
+          {
+              columns.Add(foo => foo.Comment).Titled("Comment").SetWidth(110);
+              columns.Add(foo => foo.CreatedUtc).Titled("Created").SetWidth(10);
+          }).WithPaging(20)
+}

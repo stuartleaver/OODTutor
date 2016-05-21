@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Open Closed Principle";
+}
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<h2>Open Closed Principle</h2>
+
+<div class="row">
+    <div class="col-xs-3" id="myScrollspy">
+        <ul class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="125">
+            <li class="active"><a href="#section-0">Definition</a></li>
+            <li><a href="#section-1">Motivation</a></li>
+            <li><a href="#section-2">Intent</a></li>
+            <li><a href="#section-3">Example</a></li>
+            <li><a href="#section-4">Conclusion</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-9">
+        <h2 id="section-0">Definition</h2>
+        <p>
+            In object-oriented programming, the open/closed principle states "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification"; that is, such an entity can allow its behaviour to be extended without modifying its source code. This is especially valuable in a production environment, where changes to source code may necessitate code reviews, unit tests, and other such procedures to qualify it for use in a product: code obeying the principle doesn't change when it is extended, and therefore needs no such effort.
+        </p>
+        <p>
+            The name open/closed principle has been used in two ways. Both ways use inheritance to resolve the apparent dilemma, but the goals, techniques, and results are different.
+        </p>
+        @Html.CreditLink("https://en.wikipedia.org/wiki/Open/closed_principle", "Wikipedia - Open/closed principle")
+        <br/><br/>
+        @Html.Blockquote("Software entities like classes, modules and functions should be open for extension but closed for modifications.", "http://www.oodesign.com/open-close-principle.html")
+        <hr>
+        <h2 id="section-1">Motivation</h2>
+        <p>A clever application design and the code writing part should take care of the frequent changes that are done during the development and the maintaining phase of an application. Usually, many changes are involved when a new functionality is added to an application. Those changes in the existing code should be minimized, since it's assumed that the existing code is already unit tested and changes in already written code might affect the existing functionality in an unwanted manner.</p>
+        <p>The Open Close Principle states that the design and writing of the code should be done in a way that new functionality should be added with minimum changes in the existing code. The design should be done in a way to allow the adding of new functionality as new classes, keeping as much as possible existing code unchanged.</p>
+        <hr>
+        <h2 id="section-2">Intent</h2>
+        <p>Software entities like classes, modules and functions should be open for extension but closed for modifications.</p>
+        <hr>
+        <h2 id="section-3">Example</h2>
+        <p>Bellow is an example which violates the Open Close Principle. It implements a graphic editor which handles the drawing of different shapes. It's obviously that it does not follow the Open Close Principle since the GraphicEditor class has to be modified for every new shape class that has to be added. There are several disadvantages: </p>
+        <ul><li>for each new shape added the unit testing of the GraphicEditor should be redone.</li><li>when a new type of shape is added the time for adding it will be high since the developer who add it should understand the logic of the GraphicEditor.</li><li>adding a new shape might affect the existing functionality in an undesired way, even if the new shape works perfectly</li></ul>
+        <p>In order to have more dramatic effect, just imagine that the Graphic Editor is a big class, with a lot of functionality inside, written and changed by many developers, while the shape might be a class implemented only by one developer. In this case it would be great improvement to allow the adding of a new shape without changing the GraphicEditor class.</p>
+        <img src="~/Content/Images/Course/OCP/ocp.bad.gif"/>
+        <pre class=prettyprint>
+ class GraphicEditor {
+ 
+ 	public void drawShape(Shape s) {
+ 		if (s.m_type==1)
+ 			drawRectangle(s);
+ 		else if (s.m_type==2)
+ 			drawCircle(s);
+ 	}
+ 	public void drawCircle(Circle r) {....}
+ 	public void drawRectangle(Rectangle r) {....}
+ }
+ 
+ class Shape {
+ 	int m_type;
+ }
+ 
+ class Rectangle extends Shape {
+ 	Rectangle() {
+ 		super.m_type=1;
+ 	}
+ }
+ 
+ class Circle extends Shape {
+ 	Circle() {
+ 		super.m_type=2;
+ 	}
+ } 
+        </pre>
+        <p>Bellow is a example which supports the Open Close Principle. In the new design we use abstract draw() method in GraphicEditor for drawing objects, while moving the implementation in the concrete shape objects. Using the Open Close Principle the problems from the previous design are avoided, because GraphicEditor is not changed when a new shape class is added:</p>
+        <ul><li>no unit testing required.</li><li>no need to understand the sourcecode from GraphicEditor.</li><li>since the drawing code is moved to the concrete shape classes, it's a reduced risk to affect old functionallity when new functionallity is added.</li></ul>
+        <img src="~/Content/Images/Course/OCP/ocp.good.gif"/>
+        <pre class=prettyprint>
+class GraphicEditor {
+ 	public void drawShape(Shape s) {
+ 		s.draw();
+ 	}
+ }
+ 
+ class Shape {
+ 	abstract void draw();
+ }
+ 
+ class Rectangle extends Shape  {
+ 	public void draw() {
+ 		// draw the rectangle
+ 	}
+ } 
+        </pre>
+        <hr>
+        <h2 id="section-4">Conclusion</h2>
+        <p>Like every principle OCP is only a principle. Making a flexible design involves additional time and effort spent for it and it introduce new level of abstraction increasing the complexity of the code. So this principle should be applied in those area which are most likely to be changed.</p>
+        <p>There are many design patterns that help us to extend code without changing it. For instance the Decorator pattern help us to follow Open Close principle. Also the Factory Method or the Observer pattern might be used to design an application easy to change with minimum changes in the existing code.</p>
+    </div>
+    @Html.CreditLink("http://www.oodesign.com/open-close-principle.html", "OODesign.com - Open/closed principle")
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>

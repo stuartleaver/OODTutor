@@ -1,0 +1,30 @@
+﻿@model T802.Web.Models.Contact.ContactModel
+@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Contact", "Contact", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="message-error">
+        @Html.ValidationSummary(true, "Unsuccessful")
+    </div>
+    <p>If you have any feedback outside of the survey, have found a bug or are having trouble with the site, please use the form below giving your username and message. If you are reporting a bug, please provide as much detail as possible including reproduction steps.</p>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username, new { @class = "control-label col-xs-2" })
+        <div class="col-xs-10">
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Username", autofocus = "autofocus" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Message, new { @class = "control-label col-xs-2" })
+        <div class="col-xs-10">
+            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Message" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+            <input class="btn btn-primary" type="submit" value="Send" />
+        </div>
+    </div>
+}

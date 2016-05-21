@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>OOD Tutor</h1>
+    <p class="lead">OOD Tutor is part of a Masters Degree project evaluating the effectivness of online gamification to teach Object-Oriented Design Principles</p>
+    <p>
+        @Html.ActionLink("Learn more »", "About", "Home", new { @class = "btn btn-primary" })
+    </p>
+</div>
+@if (User.IsInRole("GameMethod"))
+{
+    @Html.ActionLink("Game Home", "Index", "Game")
+}
+else
+{
+    @Html.Partial("_Welcome")
+}

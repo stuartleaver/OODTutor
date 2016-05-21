@@ -1,0 +1,44 @@
+﻿@model List<T802.Web.Models.Leaderboard.LeaderboardModel>
+@{
+    ViewBag.Title = "Game Leaderboard";
+}
+
+<h2>@ViewBag.QuizName Leaderboard</h2>
+
+<div class="btn-group">
+    <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Leaderboard selection <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink("Main", "Index", new { id = "Main" })</li>
+        <li class="divider"></li>
+        <li>@Html.ActionLink("SRP Bronze Quiz", "Index", new { id = "SRPBronzeLevel" })</li>
+        <li>@Html.ActionLink("SRP Silver Quiz", "Index", new { id = "SRPSilverLevel" })</li>
+        <li>@Html.ActionLink("SRP Gold Quiz", "Index", new { id = "SRPGoldLevel" })</li>
+        <li class="divider"></li>
+        <li>@Html.ActionLink("OCP Bronze Quiz", "Index", new { id = "OCPBronzeLevel" })</li>
+        <li>@Html.ActionLink("OCP Silver Quiz", "Index", new { id = "OCPSilverLevel" })</li>
+        <li>@Html.ActionLink("OCP Gold Quiz", "Index", new { id = "OCPGoldLevel" })</li>
+        <li class="divider"></li>
+        <li>@Html.ActionLink("LSP Bronze Quiz", "Index", new { id = "LSPBronzeLevel" })</li>
+        <li>@Html.ActionLink("LSP Silver Quiz", "Index", new { id = "LSPSilverLevel" })</li>
+        <li>@Html.ActionLink("LSP Gold Quiz", "Index", new { id = "LSPGoldLevel" })</li>
+        <li class="divider"></li>
+        <li>@Html.ActionLink("ISP Bronze Quiz", "Index", new { id = "ISPBronzeLevel" })</li>
+        <li>@Html.ActionLink("ISP Silver Quiz", "Index", new { id = "ISPSilverLevel" })</li>
+        <li>@Html.ActionLink("ISP Gold Quiz", "Index", new { id = "ISPGoldLevel" })</li>
+        <li class="divider"></li>
+        <li>@Html.ActionLink("DSP Bronze Quiz", "Index", new { id = "DIPBronzeLevel" })</li>
+        <li>@Html.ActionLink("DSP Silver Quiz", "Index", new { id = "DIPSilverLevel" })</li>
+        <li>@Html.ActionLink("DSP Gold Quiz", "Index", new { id = "DIPGoldLevel" })</li>
+    </ul>
+</div>
+
+@if (Model.Count > 0)
+{
+    @Html.Grid(Model).Columns(columns =>
+          {
+              columns.Add(foo => foo.Position).Titled("Position").SetWidth(10);
+              columns.Add(foo => foo.Username).Titled("Username").SetWidth(90);
+              columns.Add(foo => foo.Score).Titled("Score").SetWidth(10);
+          }).WithPaging(20)
+}
+

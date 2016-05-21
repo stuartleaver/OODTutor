@@ -1,0 +1,76 @@
+﻿@model T802.Web.Models.Quiz.QuizResultModel
+@{
+    ViewBag.Title = "Quiz Result";
+}
+
+<style>
+    .pass {
+        color: green;
+    }
+
+    .fail {
+        color: red;
+    }
+</style>
+
+<h2>Quiz Results</h2>
+
+@if (Model.Questions.Count > 0)
+{
+    <h2>Grade - <span class="@(@Model.StudentScore > @Model.PassMark ? "pass" : "fail")">@String.Format(@"{0}%", @Model.StudentScore)</span></h2>
+    <div class="row">
+        @for (int i = 0; i < Model.Questions.Count; i++)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.LabelFor(x => Model.Questions[i].Question, Model.Questions[i].Question)
+                </div>
+                <div class="panel-body">
+                    @for (int j = 0; j < Model.Questions[i].Answers.Count; j++)
+                    {
+
+                        if (Model.Questions[i].Answers[j].IsCorrect)
+                        {
+                            <div style="background-color: lightgreen">
+                                <label class="radio">
+                                    @Html.RadioButtonFor(x => Model.Questions[i].SelectedAnswer, Model.Questions[i].Answers[j].Id, new { @disabled = true })
+                                    @Html.LabelFor(x => Model.Questions[i].Answers[j].Text, Model.Questions[i].Answers[j].Text)
+                                </label>
+                            </div>
+                            if (!String.IsNullOrWhiteSpace(Model.Questions[i].Hint))
+                            {
+                                <p><span class="label label-info">Hint</span> @String.Format("{0}", Model.Questions[i].Hint)</p>
+                            }
+                        }
+                        else
+                        {
+                            <label class="radio">
+                                @Html.RadioButtonFor(x => Model.Questions[i].SelectedAnswer, Model.Questions[i].Answers[j].Id, new { @disabled = true })
+                                @Html.LabelFor(x => Model.Questions[i].Answers[j].Text, Model.Questions[i].Answers[j].Text)
+                            </label>
+                        }
+
+                    }
+                    @if (!String.IsNullOrWhiteSpace(Model.Questions[i].Image))
+                    {
+                        <br />
+                        @Html.Image(Url.Content("~/Content/Images/Quizzes/" + Model.Questions[i].Image), "Question image", "auto")
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <span class="col-sm-4"></span>
+    <div class="col-sm-8">
+        @if (Model.IsSystemQuiz || Model.IsLevelQuiz)
+        {
+            @Html.ActionLink("Back", "Index", "Home", null, new { @class = "btn btn-primary" })
+        }
+        else
+        {
+            @Html.ActionLink("Back", "List", "Quizzes", null, new { @class = "btn btn-primary" })
+        }
+    </div>
+}
+

@@ -1,0 +1,39 @@
+﻿@model  T802.Web.Models.Quiz.QuizModel
+     
+@if (Model.IsSystemQuiz)
+{
+    <p>Your score has been recorded but at this point in time, you will not see how well you did. Please progress through the rest of the site before taking the final quiz. It is then that you will see the answers and your score will again be recorded to see if you did improve your result.</p>
+    <p>Once you have taken the final quiz, please don't forget to take part in the final survey as your answers will also provide essencial insight into the effectiveness of gamification.</p>
+
+    <div class="row">
+        <div class="form-group">
+            <span class="col-sm-4"></span>
+            <div class="col-sm-8">
+                @Html.ActionLink("Continue", "Index", "Home", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.IsLevelQuiz && (Model.StudentScore < Model.PassMark))
+{
+    <h2>Quiz Results</h2>
+    <h2>Grade - <span class="@(@Model.StudentScore > @Model.PassMark ? "pass" : "fail")">@String.Format(@"{0}%", @Model.StudentScore)</span></h2>
+    <p>You can re-take the quiz from the home page.</p>
+
+    <div class="row">
+        <div class="form-group">
+            <span class="col-sm-4"></span>
+            <div class="col-sm-8">
+                @if (Model.IsSystemQuiz || Model.IsLevelQuiz)
+                {
+                    @Html.ActionLink("Continue", "Index", "Home", null, new { @class = "btn btn-primary" })
+                }
+                else
+                {
+                    @Html.ActionLink("Continue", "List", "Quizzes", null, new { @class = "btn btn-primary" })
+                }
+            </div>
+        </div>
+    </div>
+}

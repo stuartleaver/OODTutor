@@ -1,0 +1,60 @@
+﻿@using T802.Web.Models.Quiz
+@model T802.Web.Models.Quiz.QuizListModel
+@{
+    ViewBag.Title = "Quiz List";
+}
+
+<h2>Quiz List</h2>
+
+<p>
+    @Html.ActionLink("Create Quiz", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+@if (Model.QuizList.Count >= 1)
+{
+    @Html.Grid(Model.QuizList).Columns(columns =>
+    {
+        columns.Add(foo => foo.Name).Titled("Name").SetWidth(110);
+        columns.Add(foo => foo.Questions.Count).Titled("Questions").SetWidth(5);
+        columns.Add(foo => foo.NumberOfTimesQuizTaken).Titled("Attempts").SetWidth(5);
+        columns.Add(foo => foo.NumberOfQuizComments).Titled("Comments").SetWidth(5);
+
+        columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .SetWidth(10)
+            .RenderValueAs(d => CustomRenderingOfTakeQuizColumn(d));
+        columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .SetWidth(10)
+            .RenderValueAs(d =>
+                @<b>
+                    @Html.ActionLink("Comment", "Comment", new { id = d.Id })
+                </b>);
+    }).WithPaging(20)
+}
+else
+{
+    <p>Be the first to create a quiz so that felow participants can learn from you knowledge and through peer review.</p>
+}
+
+@helper CustomRenderingOfTakeQuizColumn(QuizModel quiz)
+{
+    if (quiz.CreatedBy != User.Identity.Name)
+    {
+        if (!quiz.HasTakenQuiz)
+        {
+            @Html.ActionLink("Take", "Quiz", new { id = quiz.Id })
+        }
+        else
+        {
+            @Html.ActionLink(String.Format("{0}%", quiz.StudentScore), "Result", "Quizzes", new { id = quiz.SystemName, student = User.Identity.Name }, null)
+        }
+    }
+    else
+    {
+        <span>Your quiz</span>
+    }
+}
+

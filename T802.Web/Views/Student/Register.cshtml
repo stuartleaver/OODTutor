@@ -1,0 +1,59 @@
+﻿@model T802.Web.Models.Student.RegisterModel
+@using T802.Core
+@{
+    ViewBag.Title = "Register";
+}
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+<h2>Register</h2>
+
+<p>Thank you for taking the time to register. Your participation is very much appreciated and the results you gather could prove very useful as there is currently no research into the use of online gamification to teach Object-Oriented design (OOD) principles.</p>
+<p>This site takes into account ethical considerations when it comes to collecting data about peoples knowledge as it could have pshylogical considerations. It would not be possible to collect the data required without a unique identifier and so just a username has been decided as ou then control how anonymous it is. For example, if your name is Bill Gates and you choose BillGates as a username, it could be obvious but if you choose WilliamTell, people would only know it was you if you told them.</p>
+<p>When you register, you will be selected for either the gamification or traditional method. Both methods are just as important as each other as there are no guarantees that gamification is better at teaching OOD principles.</p>
+<br/>
+@using (Html.BeginForm("Register", "Student", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="message-error">
+        @Html.ValidationSummary(true)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Username, new { @class = "control-label col-xs-2" })
+        <div class="col-xs-10">
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control", autofocus = "autofocus", placeholder = "Username" })
+            @Html.Partial("_CheckUsernameAvailability")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, new { @class = "control-label col-xs-2" })
+        <div class="col-xs-10">
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ConfirmPassword, new {@class = "control-label col-xs-2"})
+        <div class="col-xs-10">
+            @Html.PasswordFor(model => model.ConfirmPassword, new {@class = "form-control", placeholder = "Confirm password"})
+        </div>
+    </div>
+    
+    if (AppSettings.Get<bool>("CaptchaEnabled"))
+     {
+         <div class="form-group">
+             @Html.Label("Captcha", new {@class = "control-label col-xs-2"})
+             <div class="col-xs-10">
+
+                 @Html.Raw(Html.GenerateCaptcha())
+             </div>
+         </div>
+     }
+
+    <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </div>
+    </div>
+}
+

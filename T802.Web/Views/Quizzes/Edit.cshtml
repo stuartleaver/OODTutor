@@ -1,0 +1,43 @@
+﻿@model T802.Web.Models.Quiz.QuizModel
+@{
+    ViewBag.Title = "Edit Quiz";
+}
+
+<h3>Edit Quiz</h3>
+@Html.HiddenFor(x => Model.Id)
+<div class="form-group">
+    @Html.Label("Quiz Name", new { @class = "col-sm-4 control-label" })
+    <div class="col-sm-8">
+        @Html.Label(Model.Name)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.Label("Desctiption", new { @class = "col-sm-4 control-label" })
+    <div class="col-sm-8">
+        @Html.Label(Model.Description)
+    </div>
+</div>
+
+@Html.Grid(Model.Questions).Columns(columns =>
+          {
+              columns.Add(foo => foo.Question).Titled("Question").SetWidth(110);
+              columns.Add(foo => foo.Points).Titled("Points").SetWidth(10);
+              columns.Add(foo => foo.Answers.Count).Titled("Answers").SetWidth(10);
+          }).WithPaging(20)
+
+<br/>
+<div class="form-group">
+    <div class="col-sm-2">
+        @Html.ActionLink("Add Question", "CreateQuestion", new {id = Model.Id}, new {@class = "btn btn-primary"})
+    </div>
+    <div class="col-sm-2">
+        @Html.ActionLink("Done", "List", null, new {@class = "btn btn-primary", @float = "right"})
+    </div>
+    <br/>
+</div>
+
+
+
+
+

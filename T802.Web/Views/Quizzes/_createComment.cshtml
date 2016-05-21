@@ -1,0 +1,20 @@
+﻿@model T802.Web.Models.Quiz.QuizCommentModel
+           
+@using (Html.BeginForm("CreateComment", "Quizzes", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.ValidationSummary(false, "Errors:", new { @class = "alert alert-error" })
+    @Html.HiddenFor(x => Model.QuizId)
+    <div class="form-group">
+        @Html.Label("Comment", new { @class = "col-sm-4 control-label" })
+        <div class="col-sm-8">
+            @Html.TextAreaFor(x => x.Comment, new { @class = "form-control", placeholder = "Enter Comment" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <span class="col-sm-4"></span>
+        <div class="col-sm-8">
+            <input type="submit" value="Create" class="btn btn-primary col-sm-8" />
+        </div>
+    </div>
+}

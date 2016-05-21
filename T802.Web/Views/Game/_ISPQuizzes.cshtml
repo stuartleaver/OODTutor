@@ -1,0 +1,48 @@
+﻿@using T802.Core.Domain.Quizzes
+@using T802.Core.Domain.Students
+<ul>
+    @if (!Model.PassedISPBronzeQuiz)
+    {
+        <li>
+            @Html.ActionLink("Bronze level quiz", "Quiz", new { id = SystemQuizNames.ISPBronzeLevel })
+        </li>
+    }
+    else
+    {
+        <li>Bronze level quiz (@Html.ActionLink("Result", "Result", "Quizzes", new { id = SystemQuizNames.ISPBronzeLevel, student = User.Identity.Name }, null))</li>
+    }
+    @if (Model.PassedISPBronzeQuiz && !Model.PassedISPSilverQuiz)
+    {
+        <li>
+            @Html.ActionLink("Silver level quiz", "Quiz", new { id = SystemQuizNames.ISPSilverLevel })
+        </li>
+    }
+    else
+    {
+        if (Model.PassedISPSilverQuiz)
+        {
+            <li>Silver level quiz (@Html.ActionLink("Result", "Result", "Quizzes", new { id = SystemQuizNames.ISPSilverLevel, student = User.Identity.Name }, null))</li>
+        }
+        else
+        {
+            <li>Silver level quiz</li>
+        }
+    }
+    @if (Model.PassedISPSilverQuiz && !Model.PassedISPGoldQuiz)
+    {
+        <li>
+            @Html.ActionLink("Gold level quiz", "Quiz", new { id = SystemQuizNames.ISPGoldLevel })
+        </li>
+    }
+    else
+    {
+        if (Model.PassedISPGoldQuiz)
+        {
+            <li>Gold level quiz (@Html.ActionLink("Result", "Result", "Quizzes", new { id = SystemQuizNames.ISPGoldLevel, student = User.Identity.Name }, null))</li>
+        }
+        else
+        {
+            <li>Gold level quiz</li>
+        }
+    }
+</ul>

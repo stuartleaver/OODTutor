@@ -1,0 +1,75 @@
+﻿@using Microsoft.Ajax.Utilities
+@model T802.Web.Models.Quiz.QuizModel
+
+@{
+    ViewBag.Title = "Quiz";
+}
+
+<div class="jumbotron">
+    <h1>@Model.Name</h1>
+    <p>@Model.Description</p>
+</div>
+
+@if (Model.Questions.Count > 0)
+{
+    <div class="alert alert-warning">
+        <strong>Note: </strong>If you can't see images that are referenced in some questions, please try a different browser. It has been reported that images do not always show in Internet Explorer however, Google Chrome is OK.
+    </div>
+    <h2>
+        Questions @if (Model.PassMark > 0)
+        {
+            <small>(Passmark - @String.Format(@"{0}%)", @Model.PassMark)</small>
+        }
+    </h2>
+    using (Html.BeginForm("Grade", "Quizzes", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.HiddenFor(x => Model.Id)
+        @Html.HiddenFor(x => Model.QuizGuid)
+        @Html.HiddenFor(x => Model.Name)
+        @Html.HiddenFor(x => Model.Description)
+        @Html.HiddenFor(x => Model.SystemName)
+        @Html.HiddenFor(x => Model.IsSystemQuiz)
+        @Html.HiddenFor(x => Model.IsLevelQuiz)
+        @Html.HiddenFor(x => Model.IsStudentQuiz)
+        @Html.HiddenFor(x => Model.PassMark)
+        @Html.HiddenFor(x => Model.AchivementSystemName)
+        for (int i = 0; i < Model.Questions.Count; i++)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.LabelFor(x => Model.Questions[i].Question, Model.Questions[i].Question)
+                </div>
+                <div class="panel-body">
+                    @Html.HiddenFor(x => Model.Questions[i].Question)
+                    @Html.HiddenFor(x => Model.Questions[i].Points)
+                    @Html.HiddenFor(x => Model.Questions[i].Image)
+                    @Html.HiddenFor(x => Model.Questions[i].Hint)
+                    @for (int j = 0; j < Model.Questions[i].Answers.Count; j++)
+                    {
+                        <label class="radio">
+                            @Html.RadioButtonFor(x => Model.Questions[i].SelectedAnswer, Model.Questions[i].Answers[j].Id)
+                            @Html.LabelFor(x => Model.Questions[i].Answers[j].Text, Model.Questions[i].Answers[j].Text)
+                        </label>
+                        @Html.HiddenFor(x => Model.Questions[i].Answers[j].Id)
+                        @Html.HiddenFor(x => Model.Questions[i].Answers[j].Text)
+                        @Html.HiddenFor(x => Model.Questions[i].Answers[j].IsCorrect)
+                    }
+                    @Html.HiddenFor(x => Model.Questions[i].Id)
+                    @if (!String.IsNullOrWhiteSpace(Model.Questions[i].Image))
+                    {
+                        <br />
+                        @Html.Image(Url.Content("~/Content/Images/Quizzes/" + Model.Questions[i].Image), "Question image", "auto")
+                    }
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <span class="col-sm-4"></span>
+            <div class="col-sm-8">
+                <input type="submit" value="Submit" class="btn btn-primary col-sm-8" />
+            </div>
+        </div>
+    }
+}
+

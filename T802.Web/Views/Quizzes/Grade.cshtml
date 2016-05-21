@@ -1,0 +1,25 @@
+﻿@using T802.Core.Domain.Quizzes
+@using T802.Core.Domain.Students
+@model T802.Web.Models.Quiz.QuizModel
+@{
+    ViewBag.Title = "Grade";
+}
+
+<style>
+    .pass {
+        color: green;
+    }
+    .fail {
+        color: red;
+    }
+</style>
+
+@if ((Model.IsSystemQuiz && Model.SystemName == SystemQuizNames.FinalQuiz) || (Model.IsLevelQuiz && Model.StudentScore >= Model.PassMark) || Model.AchivementSystemName == SystemStudentAchievementNames.CompletedStudentCreatedQuiz)
+{
+    <h2>Quiz Results</h2>
+    @Html.Partial("_passedQuiz", Model)
+}
+else
+{
+  @Html.Partial("_gradeInformation", Model)
+}
