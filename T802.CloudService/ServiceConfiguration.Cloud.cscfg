@@ -9,7 +9,7 @@
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEEa48tYrifCNQaIdVEXH290wDQYJKoZIhvcNAQEBBQAEggEAHRdrR+3BEqyl0wRbQnHhWUjTnJ0gdq4/esOJkS/kPED5Ip2BQdPVNdJjE/aYmGMqnpqmv+Cy+5oGU3UxX2n5FSsv1n3eXz/GOHAMaqxByrk6v+t6+uokHwDI0hywQaDcO5k3BtOzsN0fsGRJxMHIC3GYWM+jrwsBvvyj8DCoqBbUwFYhJscr/Xu1gmfC3KSvRFVcl1TcdqoXha6gV1m0jyhB7/osHI6Of1Kz8W4VCHMHGfPizC2aV4mJ/fVeCYI0+auh3wolZFLv7Ks6Iia52m1SXN3yNXSplKvkHbKDfQJOGOO9/IDm/SA3gvuLPtJzIWbAGH/kS3R0Kp8dRqIEUTAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECNrVR+owNgsJgBBROhWRJVXVD8swxoyeKPGA" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2016-05-25T23:59:59.0000000+01:00" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=oodtutor;AccountKey=d9OdAOqE4Q7QpbCQHcZw6kiLYh3R6KZZ4whf8D0Vsd7pyIJ5TqaFzUbHMhkbVd9lZrzZ8cJftswj9ynrgnuqUg==" />
     </ConfigurationSettings>
     <Certificates>
       <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="D4D2C1A1D78B15500001C64DA4FD5867D8422B2A" thumbprintAlgorithm="sha1" />
@@ -22,7 +22,7 @@
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="sleaver" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEEa48tYrifCNQaIdVEXH290wDQYJKoZIhvcNAQEBBQAEggEAHRdrR+3BEqyl0wRbQnHhWUjTnJ0gdq4/esOJkS/kPED5Ip2BQdPVNdJjE/aYmGMqnpqmv+Cy+5oGU3UxX2n5FSsv1n3eXz/GOHAMaqxByrk6v+t6+uokHwDI0hywQaDcO5k3BtOzsN0fsGRJxMHIC3GYWM+jrwsBvvyj8DCoqBbUwFYhJscr/Xu1gmfC3KSvRFVcl1TcdqoXha6gV1m0jyhB7/osHI6Of1Kz8W4VCHMHGfPizC2aV4mJ/fVeCYI0+auh3wolZFLv7Ks6Iia52m1SXN3yNXSplKvkHbKDfQJOGOO9/IDm/SA3gvuLPtJzIWbAGH/kS3R0Kp8dRqIEUTAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECNrVR+owNgsJgBBROhWRJVXVD8swxoyeKPGA" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2016-05-25T23:59:59.0000000+01:00" />
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=oodtutor;AccountKey=d9OdAOqE4Q7QpbCQHcZw6kiLYh3R6KZZ4whf8D0Vsd7pyIJ5TqaFzUbHMhkbVd9lZrzZ8cJftswj9ynrgnuqUg==" />
     </ConfigurationSettings>
     <Certificates>
       <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="D4D2C1A1D78B15500001C64DA4FD5867D8422B2A" thumbprintAlgorithm="sha1" />

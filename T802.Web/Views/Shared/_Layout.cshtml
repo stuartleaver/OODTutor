@@ -72,17 +72,6 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    @if (!HttpContext.Current.User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Register", "Register", "Student")</li>
-                        <li>@Html.ActionLink("Login", "Login", "Student")</li>
-                    }
-                    else
-                    {
-                        <li>@Html.ActionLink("Logout", "Logout", "Student")</li>
-                    }
-                </ul>
             </div>
         </nav>
 
